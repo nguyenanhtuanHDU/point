@@ -9,17 +9,26 @@ import { ISubjectRow } from './shared/models/SubjectRow';
 export class AppComponent {
 
   subjectCount: ISubjectRow[] = [{
-    finalScore: 0,
-    creditsCount: 0
+    finalScore: '',
+    creditsCount: ''
   }]
+
+  semeterPoint!: number
 
   onAddSubjectRow() {
     this.subjectCount.push(
       {
-        finalScore: 0,
-        creditsCount: 0
+        finalScore: '',
+        creditsCount: ''
       }
     )
+  }
+
+  onReset() {
+    this.subjectCount.map(item => {
+      item.finalScore = ''
+      item.creditsCount = ''
+    })
   }
 
   onChangeFinalScore(event: any, index: number) {
@@ -31,7 +40,6 @@ export class AppComponent {
   }
 
   onCaculate() {
-    console.log(this.subjectCount);
     let totalFinalScore: number = 0
     let totalCreditsCount: number = 0
 
@@ -39,6 +47,14 @@ export class AppComponent {
       totalFinalScore += Number(i.finalScore) * Number(i.creditsCount)
       totalCreditsCount += Number(i.creditsCount)
     }
-    console.log(totalFinalScore / totalCreditsCount)
+    if(totalFinalScore / totalCreditsCount){
+      this.semeterPoint = totalFinalScore / totalCreditsCount
+    }else {
+
+    }
+  }
+
+  onDeleteRow(index: number){
+    this.subjectCount.splice(index, 1)
   }
 }

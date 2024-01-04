@@ -1,5 +1,5 @@
 <div class="container pt-5 ">
-  <div class="d-flex gap-3" *ngFor="let subject of subjectCount; index as i">
+  <div class="d-flex gap-3 align-items-center" *ngFor="let subject of subjectCount; index as i">
     <mat-form-field appearance="outline">
       <mat-label>Điểm tổng kết</mat-label>
       <input matInput type="number" [value]="subject.finalScore" (change)="onChangeFinalScore($event, i)">
@@ -8,10 +8,13 @@
       <mat-label>Số tín chỉ</mat-label>
       <input matInput type="number" [value]="subject.creditsCount" (change)="onChangeCreditsCount($event, i)">
     </mat-form-field>
+    <button mat-raised-button color="warn" (click)="onDeleteRow(i)">Xoá</button>
   </div>
 
-  <div class="d-flex gap-2">
+  <div class="d-flex gap-3 align-items-center ">
     <button mat-raised-button color="primary" (click)="onAddSubjectRow()">Thêm môn</button>
+    <button mat-raised-button color="primary" (click)="onReset()">Reset</button>
     <button mat-raised-button color="primary" (click)="onCaculate()">Tính</button>
+    <div>{{semeterPoint}}</div>
   </div>
 </div>

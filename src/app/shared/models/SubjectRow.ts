@@ -1,4 +1,4 @@
 export interface ISubjectRow {
-    finalScore: number
-    creditsCount: number
+    finalScore: string
+    creditsCount: string
 }
